@@ -1,0 +1,9 @@
+2025-01-29 21:25:30,407 - evaluation - INFO - Namespace(epsilon=1.0, grid_num=6, w=20, method='retrasyn', dataset='tdrive', multiprocessing=False, phi=20)
+2025-01-29 21:25:34,569 - evaluation - INFO - Spatial decomposition...
+2025-01-29 21:26:09,994 - evaluation - INFO - Experiment: Density
+2025-01-29 21:26:13,208 - evaluation - INFO - Density Error=0.1332141890001668
+2025-01-29 21:26:13,208 - evaluation - INFO - Experiment: Transition
+2025-01-29 21:26:23,127 - evaluation - INFO - Transition Error=0.3950605561698174
+2025-01-29 21:26:23,128 - evaluation - INFO - Experiment: Spatial-Temporal Query Error...
+2025-01-29 21:27:45,138 - evaluation - INFO - Spatial-Temporal Query Error: 0.4851140236319529
+2025-01-29 21:27:45,139 - evaluation - INFO - Experiment: Pattern Errors

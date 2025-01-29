@@ -1,4 +1,5 @@
 import pickle
+import os
 
 import utils
 from grid import Grid, GridMap
@@ -18,6 +19,11 @@ logger = config.get_logger(config.exper_name)
 CORES = multiprocessing.cpu_count() // 2
 random.seed(2023)
 np.random.seed(2023)
+
+# Get absolute path to data directory
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+orig_file = f'../data/{args.dataset}.xz'
+syn_file = f'../data/syn_data/{args.dataset}/{args.method}_{args.epsilon}_g{args.grid_num}_w{args.w}_p.pkl'
 
 #
 def spatial_decomposition(db: List[List[Tuple[float, float, int]]], gm: GridMap, multi=False):
@@ -61,9 +67,6 @@ def split_traj_db(grid_db: List[List[Tuple[Grid, int]]], gm: GridMap):
 
 
 logger.info(args)
-orig_file = f'../data/{args.dataset}.xz'
-syn_file = f'../data/syn_data/{args.dataset}/{args.method}_{args.epsilon}_g{args.grid_num}_w{args.w}_p.pkl'
-
 orig_db: List[List[Tuple[float, float, int]]]
 syn_db: List[List[Tuple[float, float, int]]]
 
@@ -242,4 +245,4 @@ else:
             orig_total_counts += orig_counts[j]
             syn_total_counts += syn_counts[j]
         hotspot_errors.append(experiment.eval_hotspot_ndcg(orig_total_counts, syn_total_counts))
-logger.info(f'Hotspot NDCG : {np.mean(hotspot_errors)}')
+logger.info(f'Hotspot NDCG : {np.mean(np.array(hotspot_errors))}')
