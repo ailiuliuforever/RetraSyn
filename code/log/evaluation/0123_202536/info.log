@@ -1,0 +1,18 @@
+2025-01-23 20:25:36,234 - evaluation - INFO - Namespace(epsilon=1.0, grid_num=6, w=20, method='retrasyn', dataset='tdrive', multiprocessing=False, phi=20)
+2025-01-23 20:25:39,711 - evaluation - INFO - Spatial decomposition...
+2025-01-23 20:26:13,993 - evaluation - INFO - Experiment: Density
+2025-01-23 20:26:16,740 - evaluation - INFO - Density Error=0.1332141890001668
+2025-01-23 20:26:16,741 - evaluation - INFO - Experiment: Transition
+2025-01-23 20:26:25,381 - evaluation - INFO - Transition Error=0.3950605561698174
+2025-01-23 20:26:25,381 - evaluation - INFO - Experiment: Spatial-Temporal Query Error...
+2025-01-23 20:27:44,457 - evaluation - INFO - Spatial-Temporal Query Error: 0.4851140236319529
+2025-01-23 20:27:44,457 - evaluation - INFO - Experiment: Pattern Errors
+2025-01-23 20:32:47,365 - evaluation - INFO - Pattern F1 Error: 0.4093
+2025-01-23 20:32:47,366 - evaluation - INFO - Experiment: Kendall-tau Coefficient
+2025-01-23 20:33:06,124 - evaluation - INFO - Kendall-tau Coefficient : 0.6984126984126984
+2025-01-23 20:33:06,124 - evaluation - INFO - Experiment: Length Error...
+2025-01-23 20:33:14,839 - evaluation - INFO - Length Error : 0.19581395957769449
+2025-01-23 20:33:14,840 - evaluation - INFO - Experiment: Trip Error...
+2025-01-23 20:33:15,319 - evaluation - INFO - Trip Error : 0.32682419566306276
+2025-01-23 20:33:15,320 - evaluation - INFO - Experiment: Hotspot NDCG
+2025-01-23 20:33:15,328 - evaluation - INFO - Hotspot NDCG : 0.4696506850111863

@@ -12,13 +12,14 @@ import experiment
 from logger.logger import ConfigParser
 import lzma
 
+# 日志配置
 config = ConfigParser(name='evaluation', save_dir='./')
 logger = config.get_logger(config.exper_name)
 CORES = multiprocessing.cpu_count() // 2
 random.seed(2023)
 np.random.seed(2023)
 
-
+#
 def spatial_decomposition(db: List[List[Tuple[float, float, int]]], gm: GridMap, multi=False):
     if multi:
         def decomp_multi(xy_l: List[Tuple[float, float, int]]):
