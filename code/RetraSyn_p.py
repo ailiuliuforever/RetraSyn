@@ -24,15 +24,27 @@ logger.info(args)
 
 
 def spatial_decomposition(xy_l: List[Tuple[float, float, float, float, int, int]], gm: GridMap):
+    """
+    空间分解函数，将轨迹点坐标转换为网格坐标
+    Args:
+        xy_l: 同一时间戳的轨迹点列表，每个元素为(x0,y0,x1,y1,flag,uid)的元组
+            x0,y0: 起始点坐标
+            x1,y1: 终止点坐标 
+            flag: 标志位(0:普通轨迹点, 1:轨迹起点, 2:轨迹终点)
+            uid: 用户ID
+        gm: 网格地图对象
+    Returns:
+        grid_list: 转换后的网格坐标列表
+    """
     grid_list = []
     for (x0, y0, x1, y1, flag, uid) in xy_l:
-        if flag == 0:
+        if flag == 0:  # 普通轨迹点,需要起始和终止网格
             g0, g1 = utils.xy2grid([(x0, y0), (x1, y1)], gm)
             grid_list.append((g0, g1, flag, uid))
-        elif flag == 1:
+        elif flag == 1:  # 轨迹起点,只需要终止网格
             g1 = utils.xy2grid([(x1, y1)], gm)[0]
             grid_list.append((g1, g1, flag, uid))
-        else:
+        else:  # 轨迹终点,只需要起始网格
             g0 = utils.xy2grid([(x0, y0)], gm)[0]
             grid_list.append((g0, g0, flag, uid))
     return grid_list
@@ -539,27 +551,39 @@ timestamps = {
     'oldenburg': 500,
     'sanjoaquin': 1000}
 
+# 打印日志,提示正在读取数据集
 logger.info('Reading dataset...')
+# 使用lzma解压并打开数据集文件,从中读取指定时间戳数量的数据
 with lzma.open(f'../data/{args.dataset}_transition_id.xz', 'rb') as f:
     dataset = pickle.load(f)[:timestamps[args.dataset]]
 
+
+
+# 计算数据集的统计信息,并保存到json文件中
 stats = utils.tid_dataset_stats(dataset, f'../data/{args.dataset}_stats.json')
+
+# 创建网格地图对象,用于将坐标转换为网格索引
 grid_map = GridMap(args.grid_num,
                    stats['min_x'],
                    stats['min_y'],
                    stats['max_x'],
                    stats['max_y'])
 
+# 打印日志,提示正在进行空间分解
 logger.info('Spatial decomposition...')
+# 根据是否使用多进程来进行空间分解
 if args.multiprocessing:
+    # 定义多进程处理函数
     def decomp_multi(xy_l):
         return spatial_decomposition(xy_l, grid_map)
-
-
+    # 创建进程池
     pool = multiprocessing.Pool(CORES)
+    # 使用进程池并行处理数据集
     grid_db = pool.map(decomp_multi, dataset)
+    # 关闭进程池
     pool.close()
 else:
+    # 单进程顺序处理数据集
     grid_db = [spatial_decomposition(xy_l, grid_map) for xy_l in dataset]
 
 grid_db = split_traj(grid_db, grid_map)

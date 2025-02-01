@@ -241,4 +241,4 @@ else:
             orig_total_counts += orig_counts[j]
             syn_total_counts += syn_counts[j]
         hotspot_errors.append(experiment.eval_hotspot_ndcg(orig_total_counts, syn_total_counts))
-logger.info(f'Hotspot NDCG : {np.mean(hotspot_errors)}')
+logger.info(f'Hotspot NDCG : {np.mean(np.array(hotspot_errors))}')

@@ -1,0 +1,12 @@
+2025-01-31 15:25:08,579 - RetraSyn - INFO - Namespace(epsilon=1.0, grid_num=6, w=20, method='retrasyn', dataset='tdrive', multiprocessing=False, phi=20)
+2025-01-31 15:25:08,580 - RetraSyn - INFO - Reading dataset...
+2025-01-31 15:25:11,670 - RetraSyn - INFO - Spatial decomposition...
+2025-01-31 15:25:41,738 - RetraSyn - INFO - RetraSyn ...
+2025-01-31 15:26:03,909 - RetraSyn - INFO - 100 timestamps processed
+2025-01-31 15:26:26,635 - RetraSyn - INFO - 200 timestamps processed
+2025-01-31 15:26:44,996 - RetraSyn - INFO - 300 timestamps processed
+2025-01-31 15:27:05,520 - RetraSyn - INFO - 400 timestamps processed
+2025-01-31 15:27:24,681 - RetraSyn - INFO - 500 timestamps processed
+2025-01-31 15:27:36,685 - RetraSyn - INFO - 600 timestamps processed
+2025-01-31 15:27:45,985 - RetraSyn - INFO - 700 timestamps processed
+2025-01-31 15:27:57,326 - RetraSyn - INFO - 800 timestamps processed
