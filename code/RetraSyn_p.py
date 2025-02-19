@@ -456,6 +456,7 @@ def lpd(traj_stream, w: int, eps: float, trans_domain: List[Transition]):
             logger.info(f'{t + 1} timestamps processed')
     return synthetic_db
 
+
 def lpa(traj_stream, w: int, eps: float, trans_domain: List[Transition]):
     trans_domain_map = utils.list_to_dict(trans_domain)
     l: int = 0
