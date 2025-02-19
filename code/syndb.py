@@ -198,38 +198,76 @@ class SynDB:
 
 class Users:
     """
-    User status:
-    1: active(available), 0: inactive(not recycled), 2: sampled for reporting, -1: quitted
+    用户状态管理类
+    
+    用户状态说明:
+    1: 活跃(可用)
+    0: 非活跃(未回收)
+    2: 已采样用于上报
+    -1: 已退出
     """
 
     def __init__(self):
+        """初始化用户管理器"""
         self.users = {}
 
     def register(self, uid):
+        """注册新用户
+        
+        参数:
+            uid: 用户ID
+        """
         try:
             self.users[uid]
         except KeyError:
             self.users[uid] = 1
 
     def sample(self, p):
+        """按比例从活跃用户中采样
+        
+        参数:
+            p: 采样比例
+        返回:
+            采样的用户ID列表
+        """
+        # 获取当前可用的活跃用户列表
         available_users = self.available_users
+        # 按比例p随机采样用户
         sampled_users = random.sample(available_users, int(p * len(available_users)))
+        # 将采样的用户状态设置为已采样(2)
         for uid in sampled_users:
             self.users[uid] = 2
+        # 返回采样的用户ID列表
         return sampled_users
 
     def deactivate(self, uid):
+        """将用户设置为非活跃状态
+        
+        参数:
+            uid: 用户ID
+        """
         self.users[uid] = 0
 
     def remove(self, uid):
+        """移除用户(设置为退出状态)
+        
+        参数:
+            uid: 用户ID
+        """
         self.users[uid] = -1
 
     def recycle(self, uid):
+        """回收非活跃用户(重新设置为活跃状态)
+        
+        参数:
+            uid: 用户ID
+        """
         if self.users[uid] != -1:
             self.users[uid] = 1
 
     @property
     def available_users(self):
+        """获取所有活跃用户列表"""
         a_u = []
         for (uid, state) in self.users.items():
             if state == 1:

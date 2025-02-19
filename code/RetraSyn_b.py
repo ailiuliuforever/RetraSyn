@@ -147,13 +147,27 @@ def generate_markov_matrix(markov_vec: np.ndarray, trans_domain: List[Transition
 
 
 def convert_grid_to_raw(grid_db: List[List[Tuple[Grid, int]]]):
+    """
+    将网格轨迹数据库转换为原始坐标轨迹数据库
+    
+    参数:
+        grid_db: 网格轨迹数据库,每条轨迹由(网格,时间戳)元组组成
+        
+    返回:
+        raw_db: 原始坐标轨迹数据库,每条轨迹由(x坐标,y坐标,时间戳)元组组成
+    """
     def traj_grid_to_raw(traj: List[Tuple[Grid, int]]):
+        """
+        将单条网格轨迹转换为原始坐标轨迹
+        """
         xy_traj = []
         for (g, t) in traj:
+            # 从网格中随机采样一个点作为轨迹点
             x, y = g.sample_point()
             xy_traj.append((x, y, t))
         return xy_traj
 
+    # 将每条网格轨迹转换为原始坐标轨迹
     raw_db = [traj_grid_to_raw(traj) for traj in grid_db]
 
     return raw_db
@@ -535,6 +549,7 @@ else:
 
 # 将网格坐标形式的合成轨迹数据转换为原始坐标形式
 syn_xy_db = convert_grid_to_raw(syn_grid_db.all_data)
+logger.info(f'Number of trajectories in synthetic database: {len(syn_xy_db)}')
 # 将合成轨迹数据保存到文件
 # 文件名格式: dataset_method_epsilon_gridnum_windowsize.pkl
 # 例如: porto_retrasyn_1.0_g100_w10.pkl 表示:

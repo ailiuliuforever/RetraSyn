@@ -1,0 +1,13 @@
+2025-02-01 19:35:49,655 - RetraSyn - INFO - Namespace(epsilon=1.0, grid_num=6, w=20, method='retrasyn', dataset='tdrive', multiprocessing=False, phi=20)
+2025-02-01 19:35:49,660 - RetraSyn - INFO - Reading dataset...
+2025-02-01 19:35:52,190 - RetraSyn - INFO - Spatial decomposition...
+2025-02-01 19:36:19,662 - RetraSyn - INFO - RetraSyn ...
+2025-02-01 19:36:40,161 - RetraSyn - INFO - 100 timestamps processed
+2025-02-01 19:37:01,152 - RetraSyn - INFO - 200 timestamps processed
+2025-02-01 19:37:18,253 - RetraSyn - INFO - 300 timestamps processed
+2025-02-01 19:37:36,805 - RetraSyn - INFO - 400 timestamps processed
+2025-02-01 19:37:54,718 - RetraSyn - INFO - 500 timestamps processed
+2025-02-01 19:38:05,885 - RetraSyn - INFO - 600 timestamps processed
+2025-02-01 19:38:14,600 - RetraSyn - INFO - 700 timestamps processed
+2025-02-01 19:38:25,314 - RetraSyn - INFO - 800 timestamps processed
+2025-02-01 19:38:35,220 - RetraSyn - INFO - Number of trajectories in synthetic database: 260697
